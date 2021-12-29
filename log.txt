@@ -1,0 +1,36 @@
+1번 째
+position: (0, 3, 4), expression: log _{`2} (x+`3)-`log _{`2} (1-`x)-`1>`0 
+*Error_comment: 'log 지수'(위치: 0번 째 log) 앞 에 약한 공백을 넣어주세요.
+
+2번 째
+position: (0, 8, 0), expression: B=` LEFT { x` LEFT | log _{`2} (x ^{2} +`ax+`b)LEQ`log _{`2} 2x RIGHT } RIGHT . 
+*Error_comment: 'log 지수'(위치: 0번 째 log) 앞 에 약한 공백을 넣어주세요.
+
+3번 째
+position: (0, 13, 4), expression: log _{` {1} over {2}} LEFT { log _{`4} (log _{`3} x) RIGHT } >`0 
+*Error_comment: 'log 지수'(위치: 0번 째 log) 앞 에 약한 공백을 넣어주세요.
+
+4번 째
+position: (0, 16, 4), expression: log _{` {1} over {3}} 27x`bullet`log _{`3} {x} over {3} `GEQ`0 
+*Error_comment: 'log 지수'(위치: 0번 째 log) 앞 에 약한 공백을 넣어주세요.
+
+5번 째
+position: (0, 18, 4), expression: (log _{` {1} over {4}} x) ^{2} +`a`log _{{1} over {4}} x`+`b<`0 
+*Error_comment: 'log 지수'(위치: 0번 째 log) 앞 에 약한 공백을 넣어주세요.
+
+6번 째
+position: (0, 21, 4), expression: x ^{log _{` {1} over {2}} x} >`4x ^{3} 
+*Error_comment: 'log 지수' 앞 에 약한 공백을 넣어주세요.
+
+7번 째
+position: (0, 28, 0), expression: x ^{2} -`2(1+`log` _{3} a)x+`4(1+`log _{3} a)=`0 
+*Error_comment: 'log 밑' 앞 에 약한 공백을 넣어주세요.
+
+8번 째
+position: (0, 37, 21), expression: 15% 
+*Error_comment: 3번 째('%') 뒤에 약한 공백(`)을 넣어주세요.
+
+9번 째
+position: (0, 40, 19), expression: 5% 
+*Error_comment: 2번 째('%') 뒤에 약한 공백(`)을 넣어주세요.
+
