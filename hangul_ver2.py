@@ -56,6 +56,7 @@ def select_error(hwp, key, value, comment):  # error를 tkinter에 출력
 def return_hwp_files():  # hwp 파일들 조사 후 glob data 반환
     hwp_names = []
     parent_path = os.path.dirname(os.path.realpath(__file__))
+    print(parent_path)
     data = glob.glob(parent_path+'\*')
     for i in data:
         if i.find('.hwp')!=-1:
