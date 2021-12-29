@@ -18,11 +18,12 @@ global count
 error_save_log = []
 next_error_count = 0
 count = 0
-def make_log_file():
+def make_log_file():  #  로그파일 생성
     parent_path = os.path.dirname(os.path.realpath(__file__))
     f = open(parent_path+'\log,txt', 'w')
     f.close()
     return parent_path+'\log,txt'
+    
 def extract_eqn(hwp):  # 이전 포스팅에서 소개한, 수식 추출방법을 함수로 정의
     Act = hwp.CreateAction("EquationModify")
     Set = Act.CreateSet()
@@ -30,7 +31,8 @@ def extract_eqn(hwp):  # 이전 포스팅에서 소개한, 수식 추출방법�
     Act.GetDefault(Pset)
     return Pset.Item("String")
 
-def select_error(hwp, key, value, comment):
+
+def select_error(hwp, key, value, comment):  # error를 tkinter에 출력
     global error_find_log
     global count
     hwp.SetPos(*key)  # 해당 컨트롤 앞으로 캐럿(커서)을 옮김
@@ -42,7 +44,9 @@ def select_error(hwp, key, value, comment):
     
     error_find_log = False
     # print(f"{count}번째\nposition: {key}, expression: {value} \n*Error_comment: {comment}\n") # 에러 발견 count, 좌표 key, 전체 수식 value, 무엇이 잘못됐는지 comment 출력
-def return_hwp_files():
+
+
+def return_hwp_files():  # hwp 파일들 조사 후 glob data 반환
     hwp_names = []
     parent_path = os.path.dirname(os.path.realpath(__file__))
     data = glob.glob(parent_path+'\*')
@@ -50,14 +54,17 @@ def return_hwp_files():
         if i.find('.hwp')!=-1:
             hwp_names.append(i)
     return hwp_names
-def Open_hwp(hwp_name):
+
+
+def Open_hwp(hwp_name):  # hwp 파일 열기
     global hwp
     hwp = win32.gencache.EnsureDispatch("HWPFrame.HwpObject")
     hwp.RegisterModule("FilePathCheckDLL", "FilePathCheckerModule")
     hwp.Open(hwp_name)
     hwp.XHwpWindows.Item(0).Visible = True
 
-def error_find(key, value):
+
+def error_find(key, value):  # 이상한 점 찾는 함수
     global error_find_log
     error_find_log = True
     const_value = value
@@ -179,7 +186,8 @@ def error_find(key, value):
         return False
     else:
         return True
-def adventure_hwp():
+
+def adventure_hwp():  # 모든 수식의 좌표와 값을 딕셔너리 eqn_dict에 저장
     global eqn_dict
     eqn_dict = {}  # 사전 형식의 자료 생성 예정
     ctrl = hwp.HeadCtrl  # 첫 번째 컨트롤(HeadCtrl)부터 탐색 시작.
@@ -195,7 +203,8 @@ def adventure_hwp():
         ctrl = nextctrl  # 다음 컨트롤 탐색
     hwp.Run("Cancel")  # 완료했으면 선택해제
 
-def tk_start_work(hwp_names):
+
+def tk_start_work(hwp_names):  # hwp 파일 조사 후 hwp 수식 조사 후 저장
     global next_error_count
     # for hwp_name in hwp_names: # 여러 파일들을 한꺼번에 볼 수 있도록 하려 하였으나 귀찮아서 안함.
     hwp_name = hwp_names[0]
@@ -203,11 +212,15 @@ def tk_start_work(hwp_names):
     hwp_name_entry_value.set(f'{os.path.basename(hwp_name)}')
     Open_hwp(hwp_name)
     adventure_hwp()
-def the_end():
+
+
+def the_end():  # 마지막을 알리는 함수
     count_entry_value.set('끝')
     expression_entry_value.set('끝')
     fix_entry_value.set('끝')
-def tk_next_error_find():
+
+
+def tk_next_error_find():  # 다음 에러 찾는 함수
     global next_error_count
     global error_save_log
     global count
@@ -222,7 +235,8 @@ def tk_next_error_find():
             return
         next_error_count+=1
         continue
-def tk_before_error_find():
+
+def tk_before_error_find():  # 이전 에러 찾는 함수
     global next_error_count
     global error_save_log
     global count
